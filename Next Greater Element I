@@ -1,0 +1,16 @@
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        stack=[]
+        unordered_map={}
+        for i in nums2:
+            while(stack and i>stack[-1]):
+                unordered_map[stack[-1]]=i
+                stack.pop()
+            stack.append(i)
+        res=[]
+        for j in nums1:
+            if j in unordered_map:
+                res.append(unordered_map[j])
+            else:
+                res.append(-1)
+        return res
